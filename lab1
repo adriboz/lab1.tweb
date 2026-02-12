@@ -2,721 +2,205 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Valorant — тактический шутер</title>
-    <!-- Подключаем шрифт, похожий на фирменный -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (иконки) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И СБРОС */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0f0e14;
-            --bg-darker: #0a0a0c;
-            --red-accent: #ff4655;
-            --red-accent-dim: rgba(255, 70, 85, 0.2);
-            --gray-light: #ece8e1;
-            --gray-soft: #8b8b8b;
-            --white: #ffffff;
-            --font-primary: 'Rajdhani', sans-serif;
-            --font-secondary: 'Inter', sans-serif;
-            --transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--gray-light);
-            font-family: var(--font-secondary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* КАСТОМНЫЙ СКРОЛЛ */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-darker);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--red-accent);
-            border-radius: 20px;
-        }
-
-        /* ТИПОГРАФИКА */
-        h1, h2, h3, h4 {
-            font-family: var(--font-primary);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* КОНТЕЙНЕР */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        /* ШАПКА — агрессивный минимализм */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0;
-            border-bottom: 1px solid rgba(255, 70, 85, 0.3);
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo i {
-            font-size: 2.3rem;
-            color: var(--red-accent);
-            filter: drop-shadow(0 0 8px rgba(255, 70, 85, 0.5));
-        }
-
-        .logo span {
-            font-size: 1.9rem;
-            font-weight: 700;
-            font-family: var(--font-primary);
-            letter-spacing: 5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            font-weight: 600;
-            font-family: var(--font-primary);
-            text-transform: uppercase;
-            font-size: 1.1rem;
-        }
-
-        .nav-links a {
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--red-accent);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* ГЕРОЙ */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 60px 0 80px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 4.2rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--white);
-            text-shadow: 0 0 15px rgba(255, 70, 85, 0.4);
-        }
-
-        .hero-content .highlight {
-            color: var(--red-accent);
-            border-bottom: 3px solid var(--red-accent);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin: 25px 0 35px;
-            color: var(--gray-soft);
-            max-width: 90%;
-        }
-
-        .btn {
-            display: inline-block;
-            background: transparent;
-            border: 2px solid var(--red-accent);
-            color: var(--red-accent);
-            padding: 14px 38px;
-            font-family: var(--font-primary);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 1rem;
-            transition: var(--transition);
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .btn:hover {
-            background: var(--red-accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(255, 70, 85, 0.6);
-        }
-
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Стилизованное изображение (имитация агентов) */
-        .agent-silhouette {
-            background: linear-gradient(145deg, #2a2a35, #1a1a22);
-            width: 380px;
-            height: 380px;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 70, 85, 0.5);
-            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.6);
-        }
-
-        .agent-silhouette::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle at 30% 50%, rgba(255,70,85,0.15) 0%, transparent 60%);
-        }
-
-        .agent-silhouette i {
-            position: absolute;
-            font-size: 16rem;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #2e2e3a;
-            text-shadow: 0 0 30px rgba(255,70,85,0.3);
-        }
-
-        .valorant-logo-symbol {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 2rem;
-            color: var(--red-accent);
-            opacity: 0.4;
-        }
-
-        /* СЕКЦИЯ ОСОБЕННОСТЕЙ (КАРТОЧКИ) */
-        .features {
-            padding: 80px 0;
-            background: var(--bg-darker);
-            margin: 40px 0;
-            border-radius: 40px 40px 0 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 2.8rem;
-            margin-bottom: 60px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title span {
-            color: var(--red-accent);
-            background: rgba(255,70,85,0.1);
-            padding: 0 15px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: rgba(20, 18, 28, 0.7);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,70,85,0.2);
-            padding: 40px 25px;
-            border-radius: 20px;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            border-color: var(--red-accent);
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255,70,85,0.15);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--red-accent);
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: var(--gray-soft);
-            font-size: 0.95rem;
-        }
-
-        /* СЕКЦИЯ АГЕНТОВ */
-        .agents-preview {
-            padding: 60px 0;
-        }
-
-        .agents-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .agent-item {
-            background: #15131c;
-            padding: 25px 25px 35px;
-            border-radius: 16px;
-            width: 180px;
-            text-align: center;
-            border-bottom: 4px solid transparent;
-            transition: var(--transition);
-        }
-
-        .agent-item:hover {
-            border-bottom-color: var(--red-accent);
-            background: #1d1b26;
-        }
-
-        .agent-icon {
-            font-size: 4rem;
-            color: var(--gray-light);
-            margin-bottom: 10px;
-        }
-
-        .agent-name {
-            font-family: var(--font-primary);
-            font-weight: 700;
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-        }
-
-        .agent-role {
-            color: var(--red-accent);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* СЕКЦИЯ ОРУЖИЕ/АРСЕНАЛ */
-        .arsenal {
-            background: linear-gradient(145deg, #0c0b10, #121016);
-            padding: 70px 0;
-            margin: 60px 0;
-            border-radius: 30px;
-        }
-
-        .weapon-showcase {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .weapon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .weapon i {
-            font-size: 3.5rem;
-            color: var(--red-accent);
-            background: rgba(255,70,85,0.1);
-            padding: 20px;
-            border-radius: 50%;
-            border: 1px dashed var(--red-accent);
-        }
-
-        /* НОВОСТНАЯ ЛЕНТА */
-        .news {
-            padding: 40px 0 80px;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .news-item {
-            background: #1a1723;
-            padding: 30px;
-            border-radius: 20px;
-            display: flex;
-            gap: 20px;
-            transition: var(--transition);
-            border-left: 6px solid var(--red-accent);
-        }
-
-        .news-item:hover {
-            background: #201d2b;
-        }
-
-        .news-date {
-            font-family: var(--font-primary);
-            font-weight: 700;
-            color: var(--red-accent);
-            font-size: 1.2rem;
-            white-space: nowrap;
-        }
-
-        .news-content h4 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        /* ФУТЕР */
-        footer {
-            background: var(--bg-darker);
-            padding: 50px 0 30px;
-            margin-top: 60px;
-            border-top: 1px solid rgba(255,70,85,0.3);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 25px;
-            font-size: 1.8rem;
-        }
-
-        .social-links a {
-            transition: var(--transition);
-            color: var(--gray-soft);
-        }
-
-        .social-links a:hover {
-            color: var(--red-accent);
-            transform: scale(1.2);
-        }
-
-        .copyright {
-            margin-top: 40px;
-            text-align: center;
-            color: var(--gray-soft);
-            font-size: 0.9rem;
-        }
-
-        /* АДАПТАЦИЯ ПОД МОБИЛЬНЫЕ */
-        @media screen and (max-width: 950px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-description {
-                max-width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-            }
-
-            .agent-silhouette {
-                width: 300px;
-                height: 300px;
-                margin: 0 auto;
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media screen and (max-width: 550px) {
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-
-            .btn {
-                padding: 12px 25px;
-                margin: 10px auto;
-                width: fit-content;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 25px;
-            }
-        }
-
-        /* АНИМАЦИЯ ПРИ ЗАГРУЗКЕ */
-        .animate-on-load {
-            animation: fadeSlideUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeSlideUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ */
-        .text-accent {
-            color: var(--red-accent);
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant</title>
 </head>
 <body>
-    <!-- НАВИГАЦИЯ -->
-    <div class="container">
-        <nav class="navbar animate-on-load">
-            <div class="logo">
-                <i class="fas fa-crosshairs"></i>
+    <header>
+        <div>
+            <div>
+                <span>⚔️</span>
                 <span>VALORANT</span>
             </div>
-            <div class="nav-links">
+            <nav>
                 <a href="#">Главная</a>
                 <a href="#">Агенты</a>
                 <a href="#">Карты</a>
                 <a href="#">Арсенал</a>
                 <a href="#">Новости</a>
-            </div>
-        </nav>
+            </nav>
+        </div>
+    </header>
 
-        <!-- ГЕРОЙ (убрана кнопка "Играть сейчас") -->
-        <section class="hero animate-on-load">
-            <div class="hero-content">
-                <h1>БОЛЬШЕ ЧЕМ <span class="highlight">БИТВА</span></h1>
-                <p class="hero-description">
-                    Тактический шутер от Riot Games. Точность, агенты, уникальные способности. 
+    <main>
+        <!-- ГЛАВНЫЙ ЭКРАН -->
+        <section>
+            <div>
+                <h1>БОЛЬШЕ ЧЕМ БИТВА</h1>
+                <p>
+                    Тактический шутер от Riot Games. Точность, агенты, уникальные способности.
                     Соревнуйся и становись легендой Valorant.
                 </p>
                 <div>
-                    <a href="#" class="btn">Обновление 12.02</a>
+                    <a href="#">Обновление 8.11</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="agent-silhouette">
-                    <i class="fas fa-user-secret"></i>
-                    <div class="valorant-logo-symbol">
-                        <i class="fas fa-bolt"></i>
+            <div>
+                <div>
+                    <!-- Место для изображения агента -->
+                    <div style="width: 380px; height: 380px; background: #1a1a22; border: 1px solid #ff4655; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 150px;">👤</span>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
 
-    <!-- ОСОБЕННОСТИ ИГРЫ (КАРТОЧКИ) - убрана карточка киберспорта -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title animate-on-load"><span>ОСОБЕННОСТИ</span></h2>
-            <div class="feature-grid">
-                <div class="feature-card animate-on-load">
-                    <i class="fas fa-users"></i>
-                    <h3>АГЕНТЫ</h3>
-                    <p>Более 20 уникальных агентов с эксклюзивными способностями. Дуэлянты, запечатлители, инициаторы и стражи.</p>
+        <!-- ОСОБЕННОСТИ -->
+        <section>
+            <div>
+                <h2>ОСОБЕННОСТИ</h2>
+                <div>
+                    <!-- Карточка 1 -->
+                    <div>
+                        <div>👥</div>
+                        <h3>АГЕНТЫ</h3>
+                        <p>Более 20 уникальных агентов с эксклюзивными способностями. Дуэлянты, запечатлители, инициаторы и стражи.</p>
+                    </div>
+                    <!-- Карточка 2 -->
+                    <div>
+                        <div>🔫</div>
+                        <h3>АРСЕНАЛ</h3>
+                        <p>Точное оружие с уникальной механикой стрельбы. Винтовки, пистолеты, дробовики и тяжелое вооружение.</p>
+                    </div>
+                    <!-- Карточка 3 -->
+                    <div>
+                        <div>🗺️</div>
+                        <h3>КАРТЫ</h3>
+                        <p>Разнообразные локации по всему миру. Bind, Haven, Split и новые поля сражений.</p>
+                    </div>
                 </div>
-                <div class="feature-card animate-on-load">
-                    <i class="fas fa-gun"></i>
-                    <h3>АРСЕНАЛ</h3>
-                    <p>Точное оружие с уникальной механикой стрельбы. Винтовки, пистолеты, дробовики и тяжелое вооружение.</p>
-                </div>
-                <div class="feature-card animate-on-load">
-                    <i class="fas fa-map"></i>
-                    <h3>КАРТЫ</h3>
-                    <p>Разнообразные локации по всему миру. Bind, Haven, Split и новые поля сражений.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="container">
-        <!-- БЛОК АГЕНТОВ (ПРЕВЬЮ) -->
-        <section class="agents-preview">
-            <h2 class="section-title animate-on-load"><span>АГЕНТЫ</span></h2>
-            <div class="agents-grid">
-                <div class="agent-item animate-on-load">
-                    <div class="agent-icon"><i class="fas fa-skull"></i></div>
-                    <div class="agent-name">JETT</div>
-                    <div class="agent-role">Дуэлянт</div>
-                </div>
-                <div class="agent-item animate-on-load">
-                    <div class="agent-icon"><i class="fas fa-shield-halberd"></i></div>
-                    <div class="agent-name">SAGE</div>
-                    <div class="agent-role">Страж</div>
-                </div>
-                <div class="agent-item animate-on-load">
-                    <div class="agent-icon"><i class="fas fa-hat-wizard"></i></div>
-                    <div class="agent-name">PHOENIX</div>
-                    <div class="agent-role">Дуэлянт</div>
-                </div>
-                <div class="agent-item animate-on-load">
-                    <div class="agent-icon"><i class="fas fa-eye"></i></div>
-                    <div class="agent-name">SOVA</div>
-                    <div class="agent-role">Инициатор</div>
-                </div>
-                <div class="agent-item animate-on-load">
-                    <div class="agent-icon"><i class="fas fa-dragon"></i></div>
-                    <div class="agent-name">BREACH</div>
-                    <div class="agent-role">Инициатор</div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 45px;">
-                <a href="#" class="btn">Все агенты <i class="fas-regular fa-arrow-right"></i></a>
             </div>
         </section>
 
-        <!-- АРСЕНАЛ (ОРУЖИЕ) -->
-        <section class="arsenal animate-on-load">
-            <h2 class="section-title" style="color: white;"><span>ТАКТИЧЕСКИЙ АРСЕНАЛ</span></h2>
-            <div class="weapon-showcase">
-                <div class="weapon">
-                    <i class="fas fa-gun"></i>
-                    <span style="font-weight: 700;">Vandal</span>
+        <!-- АГЕНТЫ -->
+        <section>
+            <div>
+                <h2>АГЕНТЫ</h2>
+                <div>
+                    <!-- Jett -->
+                    <div>
+                        <div>💀</div>
+                        <div>JETT</div>
+                        <div>Дуэлянт</div>
+                    </div>
+                    <!-- Sage -->
+                    <div>
+                        <div>🛡️</div>
+                        <div>SAGE</div>
+                        <div>Страж</div>
+                    </div>
+                    <!-- Phoenix -->
+                    <div>
+                        <div>🧙</div>
+                        <div>PHOENIX</div>
+                        <div>Дуэлянт</div>
+                    </div>
+                    <!-- Sova -->
+                    <div>
+                        <div>👁️</div>
+                        <div>SOVA</div>
+                        <div>Инициатор</div>
+                    </div>
+                    <!-- Breach -->
+                    <div>
+                        <div>🐉</div>
+                        <div>BREACH</div>
+                        <div>Инициатор</div>
+                    </div>
                 </div>
-                <div class="weapon">
-                    <i class="fas fa-bow-arrow"></i>
-                    <span style="font-weight: 700;">Phantom</span>
+                <div>
+                    <a href="#">Все агенты →</a>
                 </div>
-                <div class="weapon">
-                    <i class="fas fa-knife"></i>
-                    <span style="font-weight: 700;">Operator</span>
-                </div>
-                <div class="weapon">
-                    <i class="fas fa-rocket"></i>
-                    <span style="font-weight: 700;">Sheriff</span>
+            </div>
+        </section>
+
+        <!-- АРСЕНАЛ -->
+        <section>
+            <div>
+                <h2>ТАКТИЧЕСКИЙ АРСЕНАЛ</h2>
+                <div>
+                    <div>
+                        <div>🔫</div>
+                        <span>Vandal</span>
+                    </div>
+                    <div>
+                        <div>🏹</div>
+                        <span>Phantom</span>
+                    </div>
+                    <div>
+                        <div>🔪</div>
+                        <span>Operator</span>
+                    </div>
+                    <div>
+                        <div>🚀</div>
+                        <span>Sheriff</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- НОВОСТИ -->
-        <section class="news">
-            <h2 class="section-title animate-on-load"><span>ПОСЛЕДНИЕ НОВОСТИ</span></h2>
-            <div class="news-grid">
-                <div class="news-item animate-on-load">
-                    <div class="news-date">12.06</div>
-                    <div class="news-content">
-                        <h4>Эпизод 8: Акт 3</h4>
-                        <p>Новый боевой пропуск, агент Clove и изменения баланса. Уже в игре!</p>
+        <section>
+            <div>
+                <h2>ПОСЛЕДНИЕ НОВОСТИ</h2>
+                <div>
+                    <!-- Новость 1 -->
+                    <div>
+                        <div>12.06</div>
+                        <div>
+                            <h4>Эпизод 8: Акт 3</h4>
+                            <p>Новый боевой пропуск, агент Clove и изменения баланса. Уже в игре!</p>
+                        </div>
                     </div>
-                </div>
-                <div class="news-item animate-on-load">
-                    <div class="news-date">05.06</div>
-                    <div class="news-content">
-                        <h4>Valorant Masters Tokyo</h4>
-                        <p>Смотри финалы лучших команд мира. Призовой фонд $1,000,000.</p>
+                    <!-- Новость 2 -->
+                    <div>
+                        <div>05.06</div>
+                        <div>
+                            <h4>Valorant Masters Tokyo</h4>
+                            <p>Смотри финалы лучших команд мира. Призовой фонд $1,000,000.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="news-item animate-on-load">
-                    <div class="news-date">28.05</div>
-                    <div class="news-content">
-                        <h4>Коллекция Protocol 781</h4>
-                        <p>Эксклюзивные скины для Vandal, Sheriff и нож. Ограниченная серия.</p>
+                    <!-- Новость 3 -->
+                    <div>
+                        <div>28.05</div>
+                        <div>
+                            <h4>Коллекция Protocol 781</h4>
+                            <p>Эксклюзивные скины для Vandal, Sheriff и нож. Ограниченная серия.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="news-item animate-on-load">
-                    <div class="news-date">20.05</div>
-                    <div class="news-content">
-                        <h4>Новый агент: Clove</h4>
-                        <p>Шотландская мучительница из Эдинбурга. Управляет смертью и возрождением.</p>
+                    <!-- Новость 4 -->
+                    <div>
+                        <div>20.05</div>
+                        <div>
+                            <h4>Новый агент: Clove</h4>
+                            <p>Шотландская мучительница из Эдинбурга. Управляет смертью и возрождением.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
+    </main>
 
     <!-- ФУТЕР -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="logo">
-                    <i class="fas fa-crosshairs"></i>
+        <div>
+            <div>
+                <div>
+                    <span>⚔️</span>
                     <span>VALORANT</span>
                 </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                <div>
+                    <a href="#">🐦</a>
+                    <a href="#">📺</a>
+                    <a href="#">💬</a>
+                    <a href="#">📷</a>
                 </div>
             </div>
-            <div class="copyright">
+            <div>
                 <p>© 2024 VALORANT — фанатский проект. Valorant и все связанные товарные знаки являются собственностью Riot Games, Inc.</p>
-                <p style="margin-top: 10px;">Этот сайт создан в учебно-демонстрационных целях. Не официальный ресурс.</p>
+                <p>Этот сайт создан в учебно-демонстрационных целях. Не официальный ресурс.</p>
             </div>
         </div>
     </footer>
-
-    <!-- небольшой скрипт для добавления анимаций плавного появления при скролле (опционально) -->
-    <script>
-        // Функция для анимации элементов при скролле (Intersection Observer)
-        const animatedElements = document.querySelectorAll('.animate-on-load');
-        
-        // Удаляем класс animate-on-load, чтобы он не мешал, но сохраняем прозрачность?
-        // Мы используем его при загрузке. Для скролла добавим наблюдатель.
-        window.addEventListener('load', function() {
-            // Дополнительно: наблюдатель, если захотим повторную анимацию
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeSlideUp 0.8s ease forwards';
-                    }
-                });
-            }, { threshold: 0.2 });
-            
-            document.querySelectorAll('.feature-card, .agent-item, .news-item, .arsenal, .section-title').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
 </body>
 </html>
