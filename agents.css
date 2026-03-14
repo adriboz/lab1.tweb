@@ -1,0 +1,69 @@
+/* Общий контейнер-сетка */
+.agent-grid {
+    display: flex;
+    flex-wrap: wrap;    /* Позволяет переносить карточки на новую строку */
+    gap: 15px;          /* Расстояние между карточками */
+    padding: 20px;
+    justify-content: flex-start; /* Выравнивание по левому краю */
+}
+
+/* Сама карточка агента */
+.agent-card {
+    width: calc(25% - 15px); /* Ровно 4 карточки в ряд с учетом gap */
+    min-width: 200px;        /* Чтобы карточки не сжимались слишком сильно */
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background-color: #0f1923;
+    transition: transform 0.2s ease;
+}
+
+/* Обертка для фото */
+.agent-img-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background-color: #1f2933;
+    line-height: 0; /* Убирает лишний отступ снизу у картинки */
+}
+
+.agent-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(0.9);
+}
+
+/* Светлая плашка с именем (как на твоем скрине) */
+.agent-name-tag {
+    background-color: #ece8e1; /* Бежевый цвет Valorant */
+    color: #0f1923;            /* Темный текст */
+    padding: 12px 15px;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Эффект при наведении */
+.agent-card:hover {
+    transform: translateY(-5px);
+}
+
+.agent-card:hover img {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.agent-card:hover .agent-name-tag {
+    background-color: #ff4655; /* При наведении плашка становится красной */
+    color: white;
+}
+
+/* Адаптивность для мобилок (по 1 в ряд) */
+@media (max-width: 600px) {
+    .agent-card {
+        width: 100%;
+    }
+}

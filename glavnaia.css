@@ -1,0 +1,74 @@
+/* Контейнер для кнопки */
+.cta-wrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start; /* Кнопка будет слева под текстом */
+}
+
+/* Ссылка-обертка */
+.cta-button {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Основной блок кнопки */
+.cta-content {
+    background-color: #ff4655; /* Тот самый красный */
+    color: #ece8e1; /* Бежево-белый текст */
+    padding: 18px 45px;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Скос угла в стиле Valorant */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Декоративная рамка за кнопкой (эффект объема) */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+}
+
+/* Эффекты при наведении */
+.cta-button:hover .cta-content {
+    background-color: #ece8e1; /* Инверсия: светлый фон */
+    color: #0f1923;            /* Темный текст */
+    transform: translate(-3px, -3px); /* Легкий сдвиг */
+    box-shadow: 5px 5px 0px #ff4655; /* Появление красной тени */
+}
+
+.cta-button:active {
+    transform: scale(0.95); /* Эффект нажатия */
+}
+/* Фоновое видео — по умолчанию скрыто */
+.video-background {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(40%); /* Затемнение, чтобы текст читался */
+}
+
+/* Включаем отображение видео только там, где есть этот класс */
+.home-page .video-background {
+    display: block;
+}

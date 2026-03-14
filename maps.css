@@ -1,0 +1,32 @@
+/* Стиль для элемента списка с картой */
+.map-item {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 8px;
+    overflow: hidden; /* Гарантирует, что контент не выйдет за границы */
+    max-width: 1500px; /* Ограничивает ширину всей плитки */
+}
+
+/* Стиль для самого изображения карты */
+.map-preview {
+    width: 100%; /* Картинка подстроится под ширину родителя */
+    max-width: 1000px; /* Здесь можно регулировать размер "миниатюры" */
+    height: auto;
+    border: 1px solid #ff4655;
+    border-radius: 2px;
+    transition: transfo rm 0.3s ease;
+}
+
+/* Эффект при наведении на карточку */
+li:hover .map-preview {
+    transform: scale(1.05); /* Уменьшил масштаб, чтобы не вылезало за края */
+}
+
+/* Добавим родителю li свойство для безопасности */
+li {
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
