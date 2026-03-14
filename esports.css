@@ -1,0 +1,104 @@
+/* Контейнер на Grid (оставляем без изменений) */
+.esports-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
+    padding: 40px 20px;
+    max-width: 1400px; 
+    margin: 0 auto;
+}
+
+.esports-card {
+    text-decoration: none; 
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    background-color: #0f1923;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Обертка картинки — ТУТ ГЛАВНЫЕ ИЗМЕНЕНИЯ */
+.esports-img-wrapper {
+    width: 100%;
+    /* !!! УБРАЛИ aspect-ratio, чтобы не было фиксированной высоты !!! */
+    overflow: hidden;
+    line-height: 0; /* Убирает лишний отступ снизу */
+}
+
+.esports-img-wrapper img {
+    width: 100%;
+    /* !!! ИСПРАВЛЕНО: 'height: auto' заставляет картинку вычислять высоту сама !!! */
+    height: auto; 
+    
+    /* Убрали object-fit: cover, чтобы картинка не растягивалась и не обрезалась */
+    
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+/* Инфо-блок (плашка под картинкой) */
+.esports-info {
+    padding: 20px;
+    background-color: #7b2929;
+    color: #0f1923;
+    flex-grow: 1; /* Чтобы все плашки были одной высоты, если текста мало */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.esports-tag {
+    display: block;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #ff4655;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.esports-title {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Эффекты при наведении */
+.esports-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: #ff4655;
+}
+
+.esports-card:hover img {
+    /* Легкое увеличение, чтобы картинка не сильно "выпрыгивала" */
+    transform: scale(1.05); 
+}
+
+.esports-card:hover .esports-info {
+    background-color: #ff4655;
+    color: rgb(23, 3, 3);
+}
+
+.esports-card:hover .esports-tag {
+    color: rgba(26, 6, 6, 0.993);
+}
+
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 1100px) {
+    .esports-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 700px) {
+    .esports-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+}
