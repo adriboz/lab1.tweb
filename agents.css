@@ -67,3 +67,46 @@
         width: 100%;
     }
 }
+/* Простая ссылка внизу */
+.simple-bottom-link {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255,70,85,0.3);
+}
+
+.bottom-game-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff4655, #ff6b6b);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s;
+}
+
+.bottom-game-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255,70,85,0.4);
+}
+.filter-buttons {
+    text-align: center;
+    margin: 20px;
+}
+
+.filter-buttons button {
+    background-color: #ff4655;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.filter-buttons button:hover {
+    background-color: #e03b4a;
+}

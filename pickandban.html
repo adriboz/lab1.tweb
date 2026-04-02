@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick & Ban - Сборщик команды</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pickandban.css">
+    <script src="pickandban.js"></script>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick & Ban - Сборщик команды</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="pickandban.css">
+</head>
+<body>
+    <!-- КНОПКА НАЗАД -->
+    <div class="back-button-container">
+        <a href="../agents.html" class="back-button">
+            ← Назад к агентам
+        </a>
+    </div>
+    
+    <div class="game-container">
+        <h1>🎮 PICK & BAN SYSTEM</h1>
+        <div class="subtitle">Собери идеальную команду для победы</div>
+        
+        <!-- Остальной контент игры -->
+        <div class="main-layout">
+            <!-- ... -->
+        </div>
+    </div>
+
+    <script src="pickandban.js"></script>
+</body>
+</html>
+        
+        <div class="main-layout">
+            <div class="agents-panel">
+                <div class="section-title">
+                    <span>📋 ДОСТУПНЫЕ АГЕНТЫ</span>
+                </div>
+                <div class="role-filters" id="roleFilters"></div>
+                <div class="agents-grid" id="agentsGrid"></div>
+            </div>
+            
+            <div class="team-panel">
+                <div class="section-title">
+                    <span>✨ ВАША КОМАНДА</span>
+                    <span id="teamCount" class="team-count">0/5</span>
+                </div>
+                <div class="team-slots" id="teamSlots"></div>
+                
+                <div class="balance-card" id="balanceCard">
+                    <div class="balance-title">СБАЛАНСИРОВАННОСТЬ</div>
+                    <div class="balance-score" id="balanceScore">0%</div>
+                    <div class="balance-meter">
+                        <div class="balance-fill" id="balanceFill" style="width: 0%"></div>
+                    </div>
+                    <div id="balanceMessage" class="balance-message"></div>
+                </div>
+                
+                <div class="role-stats" id="roleStats"></div>
+                
+                <div class="buttons">
+                    <button class="btn-clear" id="clearBtn">ОЧИСТИТЬ</button>
+                    <button class="btn-reset" id="resetBtn">ПОЛНЫЙ СБРОС</button>
+                </div>
+                
+                <div id="messageArea"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="pickandban.js"></script>
+</body>
+</html>

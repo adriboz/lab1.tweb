@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Weapon - Генератор оружия Valorant</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="random-weapon.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="random-agent-wrapper">
+            <h1 class="page-title">🔫 Генератор случайного оружия</h1>
+            <p class="page-subtitle">Не знаешь какое оружие выбрать? Доверься случаю!</p>
+            
+            <div class="card-container">
+                <div class="weapon-card" id="weaponCard">
+                    <div class="card-inner">
+                        <div class="weapon-image" id="weaponImage">
+                            <img id="weaponImg" src="" alt="Оружие" style="width: 100%; max-width: 300px; height: auto;">
+                        </div>
+                        <h2 id="weaponName">Оружие неизвестно</h2>
+                        <div class="weapon-category" id="weaponCategory">
+                            <span class="category-badge">???</span>
+                        </div>
+                        <div class="weapon-description" id="weaponDescription">
+                            Нажмите кнопку, чтобы выбрать случайное оружие
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="random-btn" id="randomBtn">
+                <span class="btn-icon">🎲</span>
+                Random Weapon
+            </button>
+            
+            <div class="controls">
+                <button class="control-btn" id="copyBtn">
+                    📋 Скопировать результат
+                </button>
+                <button class="control-btn" id="shareBtn">
+                    📤 Поделиться
+                </button>
+            </div>
+            
+            <div class="history-section" id="historySection" style="display: none;">
+                <div class="history-header">
+                    <h3>📜 История выбора</h3>
+                    <button class="clear-history-btn" id="clearHistoryBtn">Очистить</button>
+                </div>
+                <ul id="historyList"></ul>
+            </div>
+            
+            <div class="back-to-weapons">
+                <a href="../weapons.html" class="back-link">
+                    ← Вернуться к списку оружия
+                </a>
+            </div>
+        </div>
+    </div>
+
+        <script src="random-weapon.js"></script>
+</body>
+</html>

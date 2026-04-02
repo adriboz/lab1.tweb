@@ -1,32 +1,108 @@
-/* Стиль для элемента списка с картой */
-.map-item {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    gap: 8px;
-    overflow: hidden; /* Гарантирует, что контент не выйдет за границы */
-    max-width: 1500px; /* Ограничивает ширину всей плитки */
-}
-
-/* Стиль для самого изображения карты */
-.map-preview {
-    width: 100%; /* Картинка подстроится под ширину родителя */
-    max-width: 1000px; /* Здесь можно регулировать размер "миниатюры" */
-    height: auto;
-    border: 1px solid #ff4655;
-    border-radius: 2px;
-    transition: transfo rm 0.3s ease;
-}
-
-/* Эффект при наведении на карточку */
-li:hover .map-preview {
-    transform: scale(1.05); /* Уменьшил масштаб, чтобы не вылезало за края */
-}
-
-/* Добавим родителю li свойство для безопасности */
-li {
-    overflow: hidden; 
+/* 1. Чистим родительский список */
+ul {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Центрируем сами карточки на странице */
+    gap: 40px;
+}
+
+/* 2. Контейнер карточки */
+.map-item {
+    perspective: 1500px;
+    width: 100%;
+    max-width: 1000px; /* Ширина вашей картинки */
+    height: 560px;     /* Установите точную высоту ваших изображений */
+}
+
+.map-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.map-card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+/* 3. Общие стили сторон */
+.map-front, .map-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    border: 2px solid #ff4655;
+    box-sizing: border-box; /* Важно! Чтобы рамка была внутри блока */
+    overflow: hidden;
+}
+
+/* Лицевая сторона */
+.map-front {
+    background: #000;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Чтобы текст Pearl был сверху картинки аккуратно */
+.map-front span {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.map-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка заполнит всё пространство без искажений */
+}
+
+/* Обратная сторона */
+.map-back {
+    background: #1f2326;
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.map-back h3 {
+    color: #ff4655;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.map-back p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 80%;
+}
+
+/* Кнопка "Вернуть" */
+.flip-back-btn {
+    margin-top: 30px;
+    background: #ff4655;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.flip-back-btn:hover {
+    background: #ff5d6a;
 }

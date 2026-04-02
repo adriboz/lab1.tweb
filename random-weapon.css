@@ -1,0 +1,528 @@
+/* Общие стили для страницы */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+    min-height: 100vh;
+}
+
+/* Навигация */
+.navbar {
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 70, 85, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: #ff4655;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.nav-menu li a:hover {
+    color: #ff4655;
+}
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px 40px;
+}
+
+.random-weapon-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Заголовки */
+.page-title {
+    text-align: center;
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInDown 0.6s ease;
+}
+
+.page-subtitle {
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    animation: fadeInUp 0.6s ease;
+}
+
+/* Карточка оружия */
+.weapon-card-container {
+    margin-bottom: 30px;
+    perspective: 1000px;
+}
+
+.weapon-card {
+    background: linear-gradient(135deg, #1e1e2f 0%, #13131f 100%);
+    border-radius: 25px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.weapon-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+    border-color: rgba(255,70,85,0.3);
+}
+
+.weapon-icon {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: bounce 2s ease infinite;
+}
+
+.weapon-name {
+    color: #fff;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #fff 0%, #ff4655 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.weapon-category {
+    margin-bottom: 25px;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: pulse 2s ease infinite;
+}
+
+/* Цвета для категорий */
+.category-badge.pistol {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+}
+
+.category-badge.smg {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 0 15px rgba(245, 87, 108, 0.3);
+}
+
+.category-badge.rifle {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
+}
+
+.category-badge.sniper {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    box-shadow: 0 0 15px rgba(67, 233, 123, 0.3);
+}
+
+.category-badge.heavy {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    box-shadow: 0 0 15px rgba(250, 112, 154, 0.3);
+}
+
+.category-badge.melee {
+    background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+    box-shadow: 0 0 15px rgba(168, 192, 255, 0.3);
+}
+
+.weapon-description {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Кнопка Random */
+.random-btn {
+    background: linear-gradient(135deg, #ff4655 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    padding: 15px 45px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255,70,85,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.random-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.random-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.random-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255,70,85,0.5);
+}
+
+.random-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.4rem;
+    animation: rotate 3s linear infinite;
+}
+
+/* Кнопки действий */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.copy-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.copy-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+.share-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.share-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* История */
+.history-section {
+    background: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 30px;
+    animation: slideUp 0.5s ease;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.history-header h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.clear-history-btn {
+    background: rgba(220,53,69,0.8);
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.clear-history-btn:hover {
+    background: rgba(220,53,69,1);
+    transform: scale(1.05);
+}
+
+.history-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-list li {
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 8px;
+    border-radius: 10px;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    border-left: 3px solid #ff4655;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.history-list li:hover {
+    transform: translateX(5px);
+    background: rgba(255,255,255,0.1);
+}
+
+.history-list li strong {
+    color: #ff4655;
+}
+
+/* Ссылка назад */
+.back-link-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-link {
+    color: #ff4655;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255,70,85,0.1);
+}
+
+.back-link:hover {
+    color: #fff;
+    background: rgba(255,70,85,0.2);
+    transform: translateX(-5px);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 15px 30px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .weapon-card {
+        padding: 25px 20px;
+    }
+    
+    .weapon-icon {
+        font-size: 4rem;
+    }
+    
+    .weapon-name {
+        font-size: 1.6rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .random-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .nav-container {
+        padding: 0.8rem 1rem;
+    }
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff4655;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff6b6b;
+}
