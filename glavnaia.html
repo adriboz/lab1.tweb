@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Valorant - Главная</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="glavnaia.css">
+    <link rel="icon" href="images/icons8-valorant-liquid-glass-color-32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/icons8-valorant-liquid-glass-color-96.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/glavnaia.css">
 </head>
 <body class="home-page">
 
@@ -20,7 +22,13 @@
         <a href="agents.html">Агенты</a> |
         <a href="maps.html">Карты</a> |
         <a href="weapons.html">Оружие</a> |
-        <a href="esports.html">Киберспорт</a>
+        <a href="esports.html">Киберспорт</a> |
+        <div class="user-menu" id="userMenu">
+            <button class="user-btn" id="userBtn">Загрузка...</button>
+            <div class="user-dropdown" id="userDropdown">
+                <a href="#" id="logoutLink">Выход</a>
+            </div>
+        </div>
     </nav>
 
     <hr>
@@ -33,6 +41,8 @@
             <div class="cta-content" data-testid="cta-content">ИГРАТЬ БЕСПЛАТНО</div>
         </a>
     </div>
+
+<script src="js/glav.js"></script>
 
 </body>
 </html>
